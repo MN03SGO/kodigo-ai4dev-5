@@ -1,0 +1,11 @@
+[Unit]
+Description=Temporizador para organizar la carpeta Descargas
+
+[Timer]
+# Ejecutar 5 minutos después del booteo y cada hora después
+OnBootSec=5min
+OnUnitActiveSec=1h
+Unit=organizador.service
+
+[Install]
+WantedBy=timers.target

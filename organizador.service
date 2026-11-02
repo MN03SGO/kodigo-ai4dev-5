@@ -1,0 +1,7 @@
+[Unit]
+Description=Servicio para organizar la carpeta Descargas
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /home/sigaran/workspace/Proyectos personales/kodigo-ai4dev-5/organizador.py
+User=sigaran
