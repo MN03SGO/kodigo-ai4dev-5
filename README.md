@@ -1,12 +1,23 @@
-# kodigo-ai4dev-5
 
-## Prompts iniciales
+# Organizador Automático de Descargas 
+**Estudiante:** Anthony Manuel Sigarán Orellana  
+**Proyecto:** Script de automatización y gestión de archivos con `systemd` y `gio`  
 
-1. `#Eres un experto programador en python`
 
-2. `#Haremos un script que lea las extensiones de los archivos en una carpeta (como .pdf, .mp3, .jpg) y los mueva automaticamente a subcarpetas ordenadas. Consideraciones: Os debian 13. Directorio: /home/sigaran/Descargas. Archivos diferentes no tomar en cuenta.`
 
-3. `#Me parece, pero creo que con esto puede mejorar. Haremos lo siguiente: Automatizaremos el proceso con un servicio de systemd, con un temporizador para una ejecucion periodica manual. Ademas, los archivos temporales (part, .crdownload, .tmp) se moveran a papeleria (utilizar gio subprocess.run).`
+
+
+
+
+## 2. Evidencia de Vibecoding (Prompts Utilizados)
+
+### a. Prompts iniciales
+
+1. >`#Eres un experto programador en python`**
+
+2. >`#Haremos un script que lea las extensiones de los archivos en una carpeta (como .pdf, .mp3, .jpg) y los mueva automaticamente a subcarpetas ordenadas. Consideraciones: Os debian 13. Directorio: /home/sigaran/Descargas. Archivos diferentes no tomar en cuenta.`**
+
+3. >`#Me parece, pero creo que con esto puede mejorar. Haremos lo siguiente: Automatizaremos el proceso con un servicio de systemd, con un temporizador para una ejecucion periodica manual. Ademas, los archivos temporales (part, .crdownload, .tmp) se moveran a papeleria (utilizar gio subprocess.run).`**
 
 ---
 
@@ -17,23 +28,45 @@ ii. **Por qué se ajustó o refinó el prompt**: Se refinó para incluir requeri
 
 ---
 
-### a. Evidencia de mejora o modificación
-Se modificó la lógica inicial (que solo movía archivos) para incorporar la gestión de archivos temporales mediante `subprocess.run(['gio', 'trash', ...])`, aumentando la seguridad y control sobre archivos parcialmente descargados.
+## 3. Iteración y Mejora
+
+### Modificación Solicitada a la I
+Se ajustó la lógica original (que únicamente clasificaba y movía archivos estáticos) para incorporar la detección y manejo inteligente de extensiones temporales de descargas activas (`.part`, `.crdownload`, `.tmp`).
+
+### Evidencia Visual
+![alt text](image.png)
+![alt text](<../Fotos/image copy.png>)
+*Prueba de la segunda modificación creando un archivo temporal:*  
+![alt text](<../Fotos/image copy 2.png>)
 
 ---
 
-### 5.
-a. **Pruebas del código**: Se verificó la lógica mediante revisión estática del código y simulación de la estructura de directorios, validando el uso de `pathlib` y la sintaxis de `gio`.
+## 4. Validación del Resultado
+a. **Pruebas del código**:   Se verificó la lógica realizando ejecuciones de prueba directas y simulando la creación manual de archivos de prueba (`.tmp`, `.part`, `.pdf`, `.mp3`) dentro de `/home/sigaran/Descargas`. Se validó la correcta sintaxis de `pathlib`, el funcionamiento del comando `gio trash` vía `subprocess` y el correcto disparo del temporizador en `systemd`.
 
-b. **Identificación de error/ajuste**: Se identificó que mover archivos a una carpeta llamada "Papelera" manualmente es menos robusto que usar la papelera del sistema (`gio trash`), por lo que se realizó el ajuste para integrar la herramienta nativa de Debian 13.
+
+b. **Identificación de error/ajuste**:  
+  * **Problema:** En el planteamiento inicial, crear una carpeta física llamada `/Papelera` y mover los archivos ahí resultaba poco robusto y no permitía su restitución estándar en el entorno gráfico.
+  * **Ajuste:** Se corrigió la instrucción para invocar la herramienta de escritorio de Gnome/FreeDesktop mediante `subprocess.run(['gio', 'trash', archivo])`, integrando los archivos temporales a la papelera nativa de Debian 13.
 
 ---
 
-### 6. Reflexión final
-a. **Aprendizaje**: El uso de IA permite iterar rápidamente desde un script simple hacia un sistema automatizado completo mediante la integración de herramientas de SO (`systemd`, `gio`).
+## 5. Reflexión Final
 
-b. **Vibecoding**:
-- **Ventajas**: Alta velocidad de implementación y estructuración lógica compleja de forma conversacional.
-- **Límites**: La necesidad de supervisión experta para asegurar que las llamadas al sistema (`systemd`) sean seguras y sigan las mejores prácticas.
+ El desarrollo asistido por IA permite escalar rápidamente ideas simples (un script de ordenamiento) hacia soluciones robustas e integradas con el sistema operativo (`systemd` + `gio`) en una fracción del tiempo habitual.
 
-c. **Comprensión**: Comprendo plenamente la lógica de `pathlib` y la gestión de procesos (`subprocess`). Necesito reforzar la configuración avanzada de unidades de `systemd` y sus permisos asociados.
+* **b. Ventajas y Límites del Vibecoding:**  
+  * **Ventajas:** Alta velocidad para prototipar, generar boilerplate de configuración (archivos `.service` y `.timer`) y estructurar la sintaxis de librerías del sistema (`pathlib`, `subprocess`).
+  * **Límites:** Requiere supervisión técnica constante por parte del desarrollador para garantizar que los permisos, rutas absolutas de Linux y comandos del sistema (`gio`) se ejecuten de forma segura sin comprometer la integridad de la información del usuario.
+
+* **c. Comprensión del Código:**  
+  * **Comprendido con claridad:** La manipulación de rutas con `pathlib.Path`, el filtrado por extensiones y la ejecución de comandos del sistema operativo mediante `subprocess`.
+  * **A reforzar:** La parametrización avanzada de unidades de servicio en `systemd` (manejo de variables de entorno de usuario `systemctl --user` y directivas de seguridad).
+
+---
+
+*Antes*
+![alt text](<../Fotos/image copy 3.png>)
+    
+*Despues*
+![alt text](<../Fotos/image copy 4.png>)
