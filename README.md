@@ -34,10 +34,10 @@ ii. **Por qué se ajustó o refinó el prompt**: Se refinó para incluir requeri
 Se ajustó la lógica original (que únicamente clasificaba y movía archivos estáticos) para incorporar la detección y manejo inteligente de extensiones temporales de descargas activas (`.part`, `.crdownload`, `.tmp`).
 
 ### Evidencia Visual
-![alt text](image.png)
-![alt text](<../Fotos/image copy.png>)
+![kodigo-ai4dev-5/Fotos/image.png](Fotos/image.png)
+![alt text](<Fotos/image copy.png>)
 *Prueba de la segunda modificación creando un archivo temporal:*  
-![alt text](<../Fotos/image copy 2.png>)
+![alt text](<Fotos/image copy 2.png>)
 
 ---
 
@@ -66,7 +66,7 @@ b. **Identificación de error/ajuste**:
 ---
 
 *Antes*
-![alt text](<../Fotos/image copy 3.png>)
-    
+![alt text](<Fotos/image copy 3.png>)
+
 *Despues*
-![alt text](<../Fotos/image copy 4.png>)
+![alt text](<Fotos/image copy 4.png>)
