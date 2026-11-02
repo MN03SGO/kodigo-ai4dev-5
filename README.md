@@ -2,7 +2,7 @@
 # Organizador Automático de Descargas 
 **Estudiante:** Anthony Manuel Sigarán Orellana  
 **Proyecto:** Script de automatización y gestión de archivos con `systemd` y `gio`  
-
+**Modelo:** Gemini 3.1 flash 
 
 
 
