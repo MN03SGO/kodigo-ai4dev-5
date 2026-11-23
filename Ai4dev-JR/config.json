@@ -1,0 +1,14 @@
+{
+  "supported_currencies": ["USD", "EUR"],
+  "status_mapping": {
+    "completed": "SUCCESS",
+    "ok": "SUCCESS",
+    "success": "SUCCESS",
+    "failed": "FAILED"
+  },
+  "date_formats": {
+    "format_A": "%Y-%m-%d %H:%M:%S",
+    "format_B": "%d/%m/%Y %H:%M",
+    "format_C": "%Y-%m-%dT%H:%M:%SZ"
+  }
+}
