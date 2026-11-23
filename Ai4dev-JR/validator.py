@@ -1,7 +1,6 @@
 
-from collections import Counter, defaultdict
-
 from normalizer import FORMAT_UNKNOWN, Transaction
+from metrics import generate_metrics
 
 
 class Validator:
@@ -29,16 +28,4 @@ class Validator:
     @staticmethod
     def generate_metrics(valid_txs: list[Transaction], invalid_txs: list[Transaction]) -> dict:
         """Conteo por estado y suma por moneda se calculan sobre las transacciones válidas."""
-        status_count = Counter(tx.status for tx in valid_txs)
-
-        totals = defaultdict(float)
-        for tx in valid_txs:
-            totals[tx.currency] += tx.amount
-
-        return {
-            "total_processed": len(valid_txs) + len(invalid_txs),
-            "valid_count": len(valid_txs),
-            "invalid_count": len(invalid_txs),
-            "status_count": dict(status_count),
-            "total_by_currency": {cur: round(total, 2) for cur, total in totals.items()},
-        }
+        return generate_metrics(valid_txs, invalid_txs)

@@ -5,6 +5,7 @@ from pathlib import Path
 
 from normalizer import Normalizer, Transaction
 from validator import Validator
+from configuration import load_config
 
 BASE_DIR = Path(__file__).parent
 CONFIG_PATH = BASE_DIR / "config.json"
@@ -86,7 +87,10 @@ MENU = """
 
 
 def main() -> None:
-    config = load_json(CONFIG_PATH)
+    try:
+        config = load_config(CONFIG_PATH)
+    except (OSError, ValueError) as exc:
+        sys.exit(f"Error de configuración: {exc}")
     records = load_json(DATA_PATH)
 
     normalizer = Normalizer(status_mapping=config["status_mapping"], date_formats=config["date_formats"])

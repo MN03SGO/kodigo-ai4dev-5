@@ -24,6 +24,10 @@ Ejecuta el analizador con Python:
 python3 validacion.py
 ```
 
+
+
+
+
 Cuando se solicite, ingresa la ruta del archivo `.txt` que quieres analizar.
 El resumen muestra el total de eventos procesados, el conteo por severidad y
 las líneas mal formateadas. Si el archivo no existe, se informa el error.
